@@ -1,0 +1,12 @@
+node_modules/
+.expo/
+.env
+.env.*
+!.env.example
+backend/node_modules/
+backend/.env
+*.log
+.DS_Store
+*.aab
+*.apk
+*.ipa

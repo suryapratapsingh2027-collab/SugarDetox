@@ -1,0 +1,35 @@
+services:
+  db:
+    image: postgres:16-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: sugardetox
+      POSTGRES_PASSWORD: sugardetox
+      POSTGRES_DB: sugardetox
+    ports:
+      - "5432:5432"
+    volumes:
+      - sugar_detox_pg:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U sugardetox -d sugardetox"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  api:
+    build: .
+    restart: unless-stopped
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      DATABASE_URL: postgresql://sugardetox:sugardetox@db:5432/sugardetox?schema=public
+      JWT_SECRET: ${JWT_SECRET:?Set JWT_SECRET in your shell or a .env file}
+      PORT: 4000
+      CORS_ORIGINS: ""
+      NODE_ENV: development
+    ports:
+      - "4000:4000"
+
+volumes:
+  sugar_detox_pg:

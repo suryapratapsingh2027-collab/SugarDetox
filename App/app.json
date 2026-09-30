@@ -1,0 +1,52 @@
+{
+  "expo": {
+    "name": "Sugar Detox",
+    "slug": "sugar-detox",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "scheme": "sugardetox",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "light",
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.sugardetox.app",
+      "buildNumber": "1",
+      "config": { "usesNonExemptEncryption": false }
+    },
+    "android": {
+      "package": "com.sugardetox.app",
+      "versionCode": 1,
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/adaptive-icon.png",
+        "backgroundColor": "#5D2EE8"
+      },
+      "blockedPermissions": ["android.permission.RECORD_AUDIO"]
+    },
+    "plugins": [
+      "expo-secure-store",
+      [
+        "expo-splash-screen",
+        {
+          "backgroundColor": "#FBF7FF",
+          "image": "./assets/splash-icon.png",
+          "imageWidth": 160
+        }
+      ],
+      [
+        "expo-notifications",
+        {
+          "icon": "./assets/notification-icon.png",
+          "color": "#5D2EE8"
+        }
+      ],
+      [
+        "expo-camera",
+        {
+          "cameraPermission": "Allow Sugar Detox to use the camera only to scan food barcodes.",
+          "microphonePermission": false,
+          "recordAudioAndroid": false
+        }
+      ]
+    ]
+  }
+}
